@@ -1,0 +1,115 @@
+% \documentclass[CEJM,DVI]{cej} % use DVI command to enable LaTeX driver
+\documentclass[CEJM,PDF]{Class+Reg_in_Molec_Docking} % use PDF command to enable PDFLaTeX driver
+\usepackage{layout}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{graphicx}
+
+\hypersetup{unicode=true}
+
+
+
+\def\lorem{Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}
+
+\def\LOREM{\lorem \\ \lorem}
+
+
+
+\title{Решение задачи оптимизации, сочетающей классификацию и регрессию, в применении к молекулярному докингу}
+
+\articletype{Биоинформатика} % Research Article, Review Article, Communication, Erratum
+
+
+
+
+\author{Бишук Антон$_{\;1}$\email{bishuk.ayu@phystech.edu},
+        Кадукова Мария$_{\;2}$\email{mn.kadukova@gmail.com},
+        Грудинин Сергей$_{\;3}$\email{sergei.grudinin@gmail.com}
+       }
+
+\shortauthor{А. Бишук, М. Кадукова, С.Грудинин}
+
+\institute{\inst{1}
+           Факультет Управления Прикладной и Информатики, Московский Физико-Технический Институт
+           \inst{2}
+           Institute of Mathematics, Research Institution, Street, Postal code, City, Country
+           \inst{3}
+           Institute of Mathematics, Research Institution, Street, Postal code, City, Country
+          }
+
+\abstract{В работе представлено решение задачи минимизации свободной энергии связи молекулы белка с лигандом посредством оптимизации скоринговых функций. Оптимизация включает в себя классификацию, базирующуюся на методе опорных векторов(SVM), и регрессию с различными функциями потерь. Такой комплексный подход к оптимизации обусловлен двумя факторами: первый --  это недостаточно высокая корреляция предсказаний и экспериментальных значений при решении классической задачи классификации энергий связывания; второй -- это переобучение регрессионных моделей при решении задачи нахождения оптимальной энергии. В данной работе представлено построение модели, сочетающей в себе классификацию и регрессию, тем самым решая проблемы отдельных подходов. Проверка тезисов будет осуществляться на данных, состоящих из комплексов белков и лигандов, для которых необходимо определить наилучшую позу лиганда или предсказать свободную энергию связывания.
+}
+
+\keywords{<<Лиганд -- Белок>> \*\ Скоринг функции \*\ Свободная энергия связывания \*\ Классификация \*\ Регрессия}
+
+\msc{XXXXX, YYYYY}
+
+\begin{document}
+\maketitle
+%\baselinestretch{2}
+\section{Введение }
+
+\hspace{0.5cm}Растущая потребность в открытии более эффективных лекарственных средств, стимулирует развитие новых подходов в молекулярном моделировании, что открывает широкие горизонты в области изучения химических соединений. Доказательством этому может служит метод виртуального скрининга, который сегодня активно используется для поиска и анализа  химических соединений, обладающих рядом необходимых свойств\cite{mannhold2011virtual}.
+
+\hspace{0.5cm}Одной из основных задач молекулярного моделирования является молекулярный докинг, заключающийся в предсказании взаимной ориентации молекул, наиболее выгодной для образования устойчивого комплекса\cite{lengauer1996computational}. Для решения данной задачи необходимо проводить анализ и обработку большого объема данных, в связи с чем, задача является вычислительно сложной, а значит требует решений с высокой производительностью.   
+
+\hspace{0.5cm}Образование комплекса <<белок -- лиганд>> является термодинамическим событием, описываемое постоянной степени сродства соединения, которая напрямую связана со свободной энергией связывания. Так минимуму энергии связывания соответствует нативная конформация. Свободная энергия связывания зависит от множества факторов, строгий подсчет которых требовал бы семплирования всего конфигурационного пространства, что в свою очередь является вычислительно сложной задачей в силу высокой размерности пространства\cite{kadukova2017convex}. Для решения данной задачи, в последние годы, был предложен ряд аппроксимирующих алгоритмов, базирующихся на скоринговых функциях\cite{meng2011molecular} для оценки энергии связывания.
+
+\hspace{0.5cm}Одной из таких функций является Convex-PL\cite{kadukova2017convex}, которая дает минимум на нативной конформации системы, состоящей из белка и лиганда. Основная идея построения Convex-PL состоит в представлении белка и лиганда в виде конечного набора точек и последующего подсчета функционала на всевозможных комбинациях различных пар атомов. Однако эта функция имеет недостаток в лице недостаточной корреляции между энергией связывания и полученных результатов, которые будут решены при помощи функций потерь регрессии. Для этого нужно решить ряд задач оптимизации\cite{boyd2004convex}.
+
+
+
+
+\section{Модель взаимодействий}
+
+
+\subsection{Subsections}
+
+
+\subsubsection{Subsubsections}
+
+\section{Постановка задачи}
+
+\section{Эксперимент}
+
+\section{Вывод}
+
+
+\section{Tables and figures}
+
+\begin{table}[h]
+\def~{\phantom0}
+\catcode`\@=13
+\def@{\phantom.}
+\caption{Some caption text.\label{tab-01}}
+\medskip
+\begin{center}
+\begin{tabular}{l|ccc}\hline
+\multicolumn1l{\it Some title}\\\hline\hline
+row 1, column 1         &   row 1, column 2  \\
+row 2, column 1    &   row 2, column 2   \\
+row 3, column 1    &   row 3, column 2   \\
+\hline
+\multicolumn1l{\it Another title} & Value 1 &   Value 2 &   Value 3 \\
+\hline\hline
+row 1                    & ~130 & 30 & 30 \\
+row 2                    & 1025 & ~1 & 15 \\
+row 3                   & ~100 & ~1 & 10 \\
+row 4        & 2925 & ~1 & ~4 \\
+row 5            & 2950 & ~1 & ~2 \\\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+%\begin{figure}[h]
+%\caption{The graph of $y=x\,sin x$ in the interval [-50,50], created by wxMaxima %0.7.4. \label{fig_abc}}
+%\vskip3cm
+%\includegraphics{xsinx-49.png}
+%\end{figure}
+
+\newpage
+
+\bibliographystyle{unsrt}
+\bibliography{References}
+
+\end{document}
