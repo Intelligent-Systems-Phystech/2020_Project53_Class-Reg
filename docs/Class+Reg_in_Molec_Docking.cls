@@ -225,7 +225,7 @@
 		            \selectfont\cej@keywords\\[1mm]%
 		            \copyright\;
 		            \selectfont
-		            Versita Warsaw and Springer-Verlag Berlin Heidelberg.% All rights reserved.
+		            %Издательская компания% All rights reserved.
 		          \vskip1mm
 		        \fi%
             \vskip1.6mm
